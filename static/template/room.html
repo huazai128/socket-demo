@@ -1,0 +1,17 @@
+<div class="col-sm-9">
+    <div class="panel panel-default room">
+        <div class="panel-heading room-header">七号房间</div>
+        <div class="panel-body room-content">
+            <ul class="list-group message">
+                <li class="list-group-item message">
+                    <img ng-src="" title="" class="img-rounded"/>华仔： 你好 <time am-time-ago="2016-11-25 12:12:12"></time>
+                </li>
+            </ul>
+            <form class="message-creator" ng-controller="MessageCtrl">
+                <div class="form-group">
+                    <textarea required class="form-control message-input" ng-model="newMessage" ctrl-enter-break-line="createMessage()" placeholder="Ctrl+Enter 发送"></textarea>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
