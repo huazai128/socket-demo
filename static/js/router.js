@@ -1,3 +1,7 @@
+/**
+ * ¬∑”…≈‰÷√
+ * @type {*|{exports}|angular.Module}
+ */
 var myApp = angular.module("myApp");
 myApp.config(["$routeProvider","$locationProvider",function($routeProvider,$locationProvider){
     $locationProvider.html5Mode(true);
@@ -6,7 +10,7 @@ myApp.config(["$routeProvider","$locationProvider",function($routeProvider,$loca
             templateUrl:"template/rooms.html",
             controller:"RoomsCtrl"
         })
-        .when("/rooms/:id",{
+        .when("/rooms/:roomId",{
             templateUrl:"template/room.html",
             controller:"RoomCtrl"
         })

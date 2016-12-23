@@ -1,8 +1,8 @@
 var Controller = require("../controllers");
 
-//ÓÃÓÚÑéÖ¤session»Ø»°
+//éªŒè¯
 exports.validate = function(req,res){
-    var userId = req.session.userId;         //»ñÈ¡session
+    var userId = req.session.userId;         //
     if(userId){
         Controller.user.findOneById({_id:userId},function(err,user){
             if(err){
@@ -10,7 +10,6 @@ exports.validate = function(req,res){
                     msg:err
                 })
             }else{
-                console.log(user);
                 res.json(user)
             }
         })
@@ -19,7 +18,7 @@ exports.validate = function(req,res){
     }
 };
 
-//µÇÂ¼
+//ç™»å½•
 exports.login = function(req,res){
     var email = req.body.email;
     if(email){
@@ -29,7 +28,7 @@ exports.login = function(req,res){
                     msg:err
                 })
             }else{
-                req.session.userId = user._id;   //´æ´¢session
+                req.session.userId = user._id;   //è®¾ç½®session
                 Controller.user.online(user,function(err,user){
                     if(err){
                         res.json(500,{
@@ -43,12 +42,12 @@ exports.login = function(req,res){
         })
     }else{
         res.json(403,{
-            msg:"ÇëÊäÈëemail"
+            msg:"è¯·è¾“å…¥æ‚¨çš„email"
         })
     }
 };
 
-//ÍË³öµÇÂ¼
+//é€€å‡º
 exports.logout =function(req,res){
     var userId = req.session.userId;
     Controller.user.offOnline(userId,function(err,user){
@@ -57,18 +56,11 @@ exports.logout =function(req,res){
                 msg:err
             })
         }else{
-            req.session.destroy(function(){  //É¾³ısession
-                console.log("É¾ÁË")
+            req.session.destroy(function(){  //
+                console.log("åˆ é™¤äº†")
             });
             res.json(200)
         }
     })
 };
-
-exports.getUsers = function(req,res){
-    Controller.user.getOnlineUsers(function(err,users){
-
-    })
-}
-
 

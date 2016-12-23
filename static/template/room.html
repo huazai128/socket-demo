@@ -1,10 +1,10 @@
 <div class="col-sm-9">
     <div class="panel panel-default room">
-        <div class="panel-heading room-header">七号房间</div>
+        <div class="panel-heading room-header"><h2>{{room.name}}</h2></div>
         <div class="panel-body room-content">
-            <ul class="list-group message">
-                <li class="list-group-item message">
-                    <img ng-src="" title="" class="img-rounded"/>华仔： 你好 <time am-time-ago="2016-11-25 12:12:12"></time>
+            <ul class="list-group message" auto-scroll-to-bottom>
+                <li class="list-group-item message" ng-repeat="message in room.messages">
+                    <img ng-src="{{message.creator.avatarUrl}}" title="{{message.creator.name}}" class="img-rounded"/>{{message.creator.name}}：{{message.content}} <time am-time-ago="message.createAt"></time>
                 </li>
             </ul>
             <form class="message-creator" ng-controller="MessageCtrl">

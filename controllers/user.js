@@ -2,7 +2,7 @@ var db = require("../models");
 var async = require("async");
 var gravatar = require("gravatar");
 
-//´´½¨»òµÇÂ¼
+//ç™»å½•æˆ–è€…åˆ›å»º
 exports.findByEmailOrCreate = function(email,callback){
     db.User.findOne({email:email},function(err,user){
         if(user){
@@ -10,29 +10,40 @@ exports.findByEmailOrCreate = function(email,callback){
         }else{
             user = new db.User();
             user.email = email;
-            user.name = email.split("@")[0];  //split£ºÇĞ¸î£¬·µ»ØÊÇÒ»¸öÊı×é
+            user.name = email.split("@")[0];  //splitï¿½ï¿½ï¿½Ğ¸î£¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ò»ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
             user.avatarUrl = gravatar.url(email);
             user.save(callback)
         }
     })
 };
 
-//µÇÂ¼ÔÚÏß
-exports.online = function(user,callback){
-    db.User.findOneAndUpdate({_id:user._id},{$set:{online:true}},{new :true},callback)
+//åœ¨çº¿
+exports.online = function(userId,callback){
+    db.User.findOneAndUpdate({_id:userId},{$set:{online:true}},{new :true},callback)
 };
 
-//¸ù¾İID²éÑ¯
+//æ ¹æ®ç”¨æˆ·IDæŸ¥æ‰¾
 exports.findOneById =  function(userId,callback){
     db.User.findOne({_id:userId},callback);
 };
 
-//»ñÈ¡ËùÓĞµÄÓÃ»§
+//è·å–æ‰€æœ‰åœ¨çº¿ç”¨æˆ·
 exports.getOnlineUsers = function(callback){
     db.User.find({online:true},callback);
 };
 
-//ÍË³öµÇÂ¼
+//ä¸‹çº¿
 exports.offOnline = function(userId,callback){
     db.User.findOneAndUpdate({_id:userId},{$set:{online:false}},{new:true},callback)
-}
+};
+
+//ç¦»å¼€èŠå¤©å®¤
+exports.leaveRoom = function(user,callback){
+    db.User.findOneAndUpdate({_id:user._id},{$set:{online:true,roomId:null}},{new:true},callback);
+};
+
+//åŠ å…¥èŠå¤©å®¤;åŒ…å«ç”¨æˆ·ä¿¡æ¯å’ŒèŠå¤©å®¤ä¿¡æ¯
+exports.joinRoom = function(join,callback){
+    db.User.findOneAndUpdate({_id:join.user._id},{$set:{online:true,roomId:join.room._id}},{new:true},callback)
+};
+

@@ -1,4 +1,5 @@
 var myApp = angular.module("myApp",['ngRoute', 'angularMoment']);
+
 myApp.run(["$window","$rootScope","$location","server",function($window,$rootScope,$location,server){
     $window.moment.locale("zh-cn");
     server.validate().then(function(){

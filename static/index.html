@@ -15,12 +15,12 @@
             <a class="navbar-brand" href="javascript:void(0)">即时通讯</a>
         </div>
         <nav class="collapse navbar-collapse" role="navigation">
-            <ul class="nav navbar-nav" ng-show="me">
+            <ul class="nav navbar-nav" ng-show="me.name">
                 <li>
                     <a href="/rooms" >房间列表</a>
                 </li>
             </ul>
-            <ul class="nav navbar-nav navbar-right"  ng-show="me">
+            <ul class="nav navbar-nav navbar-right"  ng-show="me._id">
                 <li>
                     <img src="{{me.avatarUrl}}" title="{{me.name}}" class="img-rounded">
                 </li>
@@ -36,7 +36,7 @@
 </div>
 
     <!-- 依赖js -->
-    <!--<script type="text/javascript" src="/socket.io/socket.io.js"></script>-->
+    <script type="text/javascript" src="/socket.io/socket.io.js"></script>
     <script type="text/javascript" src="/components/jquery/dist/jquery.js"></script>
     <script type="text/javascript" src="/components/bootstrap/dist/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="/components/angular/angular.js"></script>
@@ -47,10 +47,14 @@
 
     <script type="text/javascript" src="/js/run.js"></script>
     <script type="text/javascript" src="/server/server.js"></script>
+    <script type="text/javascript" src="/server/socket.js"></script>
     <script type="text/javascript" src="/js/router.js"></script>
     <script type="text/javascript" src="/controllers/login.js"></script>
     <script type="text/javascript" src="/controllers/room.js"></script>
     <script type="text/javascript" src="/controllers/rooms.js"></script>
+    <script type="text/javascript" src="/controllers/message.js"></script>
+    <script type="text/javascript" src="/js/auto-scroll.js"></script>
+    <script type="text/javascript" src="/js/enter.js"></script>
 
 
     <!--  -->
